@@ -1,0 +1,20 @@
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/src/assets/fonts/Inter-Medium.otf');
+
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/src/assets/fonts/Inter-Bold.otf');
+
+  font-weight: bold;
+  font-style: normal;
+}
+  
+.font-body{
+    font-family: 'Inter', sans-serif;
+    color:#3F3F3F;
+}

@@ -1,0 +1,21 @@
+<div class="container">
+    <app-loading [visibility]="loading" logo_color="#5f3492"></app-loading>
+  <div class="title"><div>{{ title }}</div>
+    <progress [value]="progress|async" max="1"></progress>
+  </div>
+
+
+  <div style="height: calc(100% - 50px); width: 100%;">
+    <div id="book" style="height: 100%; width: 100%;"></div>
+  </div>
+  
+  <div class="bottom">
+    <div (click)="navigate(['/book',book.id])">Page {{page|async}}</div>
+    <div></div>
+  </div>
+  
+  
+  <label>{{ progress | async }}</label>
+</div>
+
+

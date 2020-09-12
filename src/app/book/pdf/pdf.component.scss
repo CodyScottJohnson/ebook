@@ -1,0 +1,73 @@
+@import 'mixins';
+@import 'fonts';
+.toolbar{
+    @include box-shadow(1);
+        background:white;
+        padding:10px 20px;
+        height:60px!important;
+        color:black!important;
+        .actions{
+            display:none;
+        }
+        &:hover{
+            height:90px!important;
+            .actions{
+                display:block;
+            }
+        }
+}
+progress{
+    margin:10px 0px;
+    background:none;
+    border-radius:15px;
+    overflow: hidden;
+    width:100%;
+    height:5px;
+    
+    -webkit-animation: animate-stripes 5s linear infinite;
+    animation: animate-stripes 5s linear infinite;
+    &::-webkit-progress-value{
+        background-image:
+	   -webkit-linear-gradient(-45deg, 
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #5f3492, #8451c1);
+
+    border-radius: 15px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+   
+   
+    }
+    &::-webkit-progress-bar{
+        background-color: #eee;
+  border-radius: 15px;
+  overflow: hidden;
+  outline:none;
+  //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+    }
+}
+.title{
+    @extend .font-body;
+    margin-top:5px;
+    color:darken(#c8c8c8,.3);
+    font-size:16px;
+    text-align: center;
+    //padding:5px;
+
+    display: inline-block;
+    display:grid;
+    justify-content: center;
+    .close{
+        position: absolute;
+        font-size: 22px;
+        top:16px; 
+        right:20px;
+    }
+}
+.thumbnail{
+    border-radius:20px!important;
+    overflow: hidden;
+}

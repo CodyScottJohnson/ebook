@@ -1,3 +1,31 @@
 :host {
   
 }
+.header{
+    height:50px;
+    width:100%;
+    background:blue;
+    -webkit-app-region: drag;
+    cursor: pointer;
+    position:fixed;
+    opacity:0;
+    border-radius:20px 20px 0 0;
+    &:hover{
+        position:relative;
+        opacity:1;
+    }
+}
+.main{
+    height:100%;
+    overflow: hidden;
+    &.header-shown{
+        height:calc(100% - 200px)
+    }
+}
+.loading{
+    position: fixed;
+    height:100%;
+    width:100%;
+    background:blue;
+    z-index:99;
+}

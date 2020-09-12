@@ -1,0 +1,20 @@
+<div class="container">
+
+    <div *ngFor="let book of author" (click)="navigate(['/book', book.id])">
+        <app-cover
+
+        [path]="book.path"
+        (click)="navigate(['/book', book.id])"
+
+      ></app-cover>
+
+        {{book.title}}
+    </div>
+
+    <a (click)="navigate(['/'])">Home</a>
+    <div *ngFor='let book of otherBooks'>
+        <img [src]="'http://covers.openlibrary.org/b/id/'+book.cover_i+'-L.jpg'"/>
+        {{book.title}}
+    </div>
+</div>
+

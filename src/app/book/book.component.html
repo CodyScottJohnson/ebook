@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="info">
+        <div class="cover" [ngStyle]="{'background-image':'url('+book.image+')'}"></div>
+        <div class="meta">
+            <div class="title">{{book.title}} </div>
+            <div class="author">{{book.name}} </div>
+            <div class="published">{{book.pubdate}}</div>
+            <div class="formats">
+                <div class="label">Formats</div>
+                <div class="format" *ngFor="let format of book.formats" (click)="openBook(format.format,format.name)">
+                    {{format.format}}
+                </div>
+            </div>
+           
+        </div>
+   
+    </div>
+ 
+    <div class="description">
+        <p *ngFor="let comment of book.comments" [innerHtml]="comment.text"></p>
+    </div>
+    
+  
+    <a (click)="navigate(['/book',book.id,'read'])">Read </a>
+    <a (click)="navigate(['/'])">Home </a>
+    <a (click)="navigate(['/book',book.id,'pdf'])">pdf</a>
+
+   
+
+</div>

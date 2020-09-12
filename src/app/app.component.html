@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<div class="main-container">
+    <div class="loading" *ngIf="loading">Cody</div>
+  <div class="header "  (mouseover)="showHeader()" (mouseout)="hideHeader()"></div>
+  
+  <div class="main"><router-outlet></router-outlet></div>
+  
+</div>

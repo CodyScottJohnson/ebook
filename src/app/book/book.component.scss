@@ -1,0 +1,37 @@
+.cover{
+    height:450px;
+    width:300px;
+    background-size:cover;
+    background-position: center;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.info{
+    padding:20px 40px;
+    display:grid;
+    grid-template-columns: 350px auto;
+    .meta{
+        padding:20px 0px;
+        text-align: left;
+        align-self: left;
+        justify-self: start;
+        .title{
+            font-size:40px;
+        }
+    }
+}
+.description{
+    padding:40px;
+}
+.format{
+    display:inline-block;
+    text-transform: lowercase;
+    margin:5px 10px;
+    border-radius:20px;
+    border:1px solid #6c61e1;
+    color:#6c61e1;
+    width:70px;
+    padding:5px;
+    text-align: center;
+
+}

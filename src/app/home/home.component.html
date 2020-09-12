@@ -1,7 +1,147 @@
 <div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
+  <div class="search">
+    <input />
+  </div>
+  <h1 class="title" (click)="electron.getLibrary()">
+    Books
   </h1>
 
-  <a routerLink="/detail">{{ 'PAGES.HOME.GO_TO_DETAIL' | translate }}</a>
+  <div class="new-books">
+    <div class="title-bar">
+      <div class="title">
+        Newly Added
+      </div>
+      <div class="sub-title">
+        See What Books You've Recently Added to Your Library
+      </div>
+      <div class="see-all">
+        view all
+      </div>
+    </div>
+    <div class="books">
+      <div
+        *ngFor="let book of library.books?.slice(0, 20); index as i"
+        class="book"
+      >
+        <app-cover
+          class="cover"
+          [path]="book.path"
+          [routerLink]="['/book', book.id]"
+        ></app-cover>
+
+        <div class="author" [routerLink]="['/author', book.author_id]">
+          {{ book.name }}
+        </div>
+        <div class="title">
+          {{ book.title }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="current-reading">
+    <div class="title-bar">
+      <div class="title">
+        Currently Reading
+      </div>
+      <div class="sub-title">
+        Continue where you left off
+      </div>
+      <div class="see-all">
+        view all
+      </div>
+    </div>
+    <div
+      *ngFor="let book of electron.currentlyReading | async | slice:0:4"
+      class="book-progress-tile"
+      [routerLink]="['/book', book.id,'read']"
+    >
+      <app-cover
+        class="cover"
+        [path]="book.path"
+        
+        [width]="120"
+      ></app-cover>
+      <div class="info">
+        <div class="title">{{ book.title }}</div>
+        <div class="author">{{ book.author }}</div>
+        <div class="last-read">{{ formatDateRelative(book.progress.last_read)}}</div>
+       
+      </div>
+      <div class="progress">
+
+        <div class="progress-circle">
+          <round-progress
+            [current]="book.progress.percent_completed"
+            [max]="1"
+            [color]="'#5f3492'"
+            [background]="'#f6f2fa'"
+            [radius]="60"
+            [stroke]="12"
+            [rounded]="true"
+            [clockwise]="true"
+            [responsive]="false"
+            [duration]="800"
+            [animation]="'easeInOutQuart'"
+            [animationDelay]="0"
+          ></round-progress>
+          <div class="progress-value">
+            {{ book.progress.percent_completed | percent }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="categories">
+    <div class="category">
+      <div class="title">
+        Design
+      </div>
+      <div class="count">
+        50 Books
+      </div>
+      <div class="sample-books">
+        <app-cover
+          class="cover"
+          [path]="
+            'Daniel Goleman,Richard E. Boyatzis,Annie McKee/Primal Leadership (1)'
+          "
+          height="140"
+          width="100"
+        ></app-cover>
+        <app-cover
+          class="cover"
+          [path]="
+            'Daniel Goleman,Richard E. Boyatzis,Annie McKee/Primal Leadership (1)'
+          "
+          height="140"
+          width="100"
+        ></app-cover>
+        <app-cover
+          class="cover"
+          [path]="
+            'Daniel Goleman,Richard E. Boyatzis,Annie McKee/Primal Leadership (1)'
+          "
+          height="140"
+          width="100"
+        ></app-cover>
+      </div>
+    </div>
+  </div>
+  <div class="all-books">
+    <div *ngFor="let book of library.books; trackBy: trackByFn" class="book">
+      <app-cover
+        class="cover"
+        [path]="book.path"
+        [routerLink]="['/book', book.id]"
+      ></app-cover>
+
+      <div class="author" [routerLink]="['/author', book.author_id]">
+        {{ book.name }}
+      </div>
+      <div class="title">
+        {{ book.title }}
+      </div>
+    </div>
+  </div>
 </div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ElectronService } from './core/services';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { AppConfig } from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  headerVis:boolean= false;
+  loading:boolean = false;
   constructor(
     private electronService: ElectronService,
     private translate: TranslateService
@@ -24,5 +27,14 @@ export class AppComponent {
     } else {
       console.log('Run in browser');
     }
+    electronService.loading.subscribe({next:(value)=>{
+      this.loading=value;
+    }})
+  }
+  showHeader(){
+    this.headerVis=true;
+  }
+  hideHeader(){
+    this.headerVis=false;
   }
 }

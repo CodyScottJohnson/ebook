@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ngZone:NgZone,private router:Router) { }
 
   ngOnInit(): void { }
+  public navigate(commands: any[]): void {
+    this.ngZone.run(() => this.router.navigate(commands)).then();
+}
+
 
 }

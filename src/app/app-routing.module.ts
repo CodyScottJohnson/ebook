@@ -1,28 +1,39 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PageNotFoundComponent } from './shared/components';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { PageNotFoundComponent } from "./shared/components";
 
-import { HomeRoutingModule } from './home/home-routing.module';
-import { DetailRoutingModule } from './detail/detail-routing.module';
-
+import { HomeRoutingModule } from "./home/home-routing.module";
+import { DetailRoutingModule } from "./detail/detail-routing.module";
+import { AuthorRoutingModule } from './author/author-routing.module'
+import { BookComponent,BookDataResolver } from "./book/book.component";
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full",
   },
   {
-    path: '**',
-    component: PageNotFoundComponent
-  }
+    path: "book2/:id",
+    component:BookComponent,
+    resolve:{
+      book:BookDataResolver
+    }
+  },
+  {
+    path: "**",
+    redirectTo: "home",
+  },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
+    
     HomeRoutingModule,
-    DetailRoutingModule
+    DetailRoutingModule,
+    AuthorRoutingModule,
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

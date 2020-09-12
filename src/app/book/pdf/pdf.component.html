@@ -1,0 +1,95 @@
+<ng-template #additionalButtons>
+    <div id="toolbarViewer" class="toolbar" >
+        <div class="title">
+            <div>{{bookInfo.title}}</div>
+            <progress [value]="currentPage" [max]="totalPages"></progress>
+            <div class="close" (click)="navigate(['/book', bookInfo.id])"><fa-icon [icon]="['far', 'times']"></fa-icon></div>
+        </div>
+        <div class="actions">
+      <div id="toolbarViewerLeft">
+          <button id="toggleSidebar">Side</button>
+        <pdf-toggle-sidebar style="color:green"></pdf-toggle-sidebar>
+        <div class="toolbarButtonSpacer"></div>
+        <pdf-find-button [showFindButton]="true" [textLayer]="true"></pdf-find-button>
+        <pdf-paging-area></pdf-paging-area>
+      </div>
+      <div id="toolbarViewerRight">
+        <pdf-open-file></pdf-open-file>
+        <pdf-presentation-mode></pdf-presentation-mode>
+        <pdf-print></pdf-print>
+        <app-open-in-new-tab></app-open-in-new-tab>
+        <pdf-download></pdf-download>
+        <pdf-bookmark></pdf-bookmark>
+        <div class="verticalToolbarSeparator hiddenSmallView"></div>
+        <pdf-toggle-secondary-toolbar></pdf-toggle-secondary-toolbar>
+      </div>
+      <pdf-zoom-toolbar ></pdf-zoom-toolbar>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #fancySidebar>
+  <div id="sidebarContainer" style="top:31px;background-color:goldenrod">
+    <div id="additionalSidebarContainer">
+      <div id="toolbarSidebar">
+        <div class="splitToolbarButton toggled">
+          <button style="background-color: red; height:100%;width: 34%;border:0;margin:0;padding:0" 
+            type="button" id="viewThumbnail" 
+            class="toolbarButton" 
+            data-l10n-id="thumbs">
+            <span data-l10n-id="thumbs_label">Thumbnails</span>
+          </button>
+          <button
+            style="background-color: green; height:100%;width: 35%;border:0;margin:0;padding:0"
+            type="button"
+            id="viewOutline"
+            class="toolbarButton"
+            data-l10n-id="document_outline">
+            <span data-l10n-id="document_outline_label">Document Outline</span>
+          </button>
+          <button
+            style="background-color: blue; height:100%;width: 34%;border:0;margin:0;padding:0"
+            type="button" 
+            id="viewAttachments" 
+            class="toolbarButton" 
+            data-l10n-id="attachments">
+            <span data-l10n-id="attachments_label">Attachments</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <pdf-sidebar-content></pdf-sidebar-content>
+    <div id="sidebarResizer" class="hidden"></div>
+  </div>
+</ng-template>
+
+
+<ngx-extended-pdf-viewer
+  [src]="pdfFile | async"
+  [customToolbar]="additionalButtons"
+  [customThumbnail]="thumbnail"
+  [(page)]="currentPage"
+  (pageChange)="pageChange($event)"
+  (pagesLoaded)="pagesLoaded($event)"
+  useBrowserLocale="true"
+  height="100%"
+></ngx-extended-pdf-viewer>
+
+
+
+<ng-template #thumbnail>
+    <a class="pdf-viewer-template">
+      <div class="thumbnail" data-page-number="PAGE_NUMBER">
+         
+          <div class="thumbnailSelectionRing" style="width: WIDTH_OF_RING; height: HEIGHT_OF_RING; display: contents">
+            <div class="thumbnail-text" style="width: WIDTH_OF_RING; height: HEIGHT_OF_RING;margin-bottom: -HEIGHT_OF_RING">
+            </div>
+            <div class="image-container">
+              <!-- image is automatically inserted here -->
+          </div>
+        </div>
+      </div>
+    </a>
+  </ng-template>
+  
+  
